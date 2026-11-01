@@ -1,0 +1,2237 @@
+{
+    "name": "P1- Client Reporting Automation",
+    "flow": [
+        {
+            "id": 1,
+            "module": "google-sheets:filterRows",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 12563809
+            },
+            "mapper": {
+                "from": "drive",
+                "limit": "100",
+                "sheetId": "All_ads",
+                "sortOrder": "asc",
+                "spreadsheetId": "1LOmDLIIDbsF4vZ1bJ0oNgAQxoibnd0kSn45W-_7BlDA",
+                "tableFirstRow": "A1:Z1",
+                "includesHeaders": true,
+                "valueRenderOption": "FORMATTED_VALUE",
+                "dateTimeRenderOption": "FORMATTED_STRING"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "b9b25ed389878b08"
+                },
+                "restore": {
+                    "expect": {
+                        "from": {
+                            "label": "Select from My Drive"
+                        },
+                        "orderBy": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "sheetId": {
+                            "mode": "chose",
+                            "label": "All_ads"
+                        },
+                        "sortOrder": {
+                            "mode": "chose",
+                            "label": "Ascending"
+                        },
+                        "spreadsheetId": {
+                            "mode": "chose",
+                            "label": "P1  Client Reporting Automation"
+                        },
+                        "tableFirstRow": {
+                            "label": "A-Z"
+                        },
+                        "includesHeaders": {
+                            "mode": "chose",
+                            "label": "Yes"
+                        },
+                        "valueRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted value"
+                        },
+                        "dateTimeRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted string"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "Abeeha's Google connection (abeehasajjad001@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Search Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "valueRenderOption",
+                        "type": "select",
+                        "label": "Value render option",
+                        "validate": {
+                            "enum": [
+                                "FORMATTED_VALUE",
+                                "UNFORMATTED_VALUE",
+                                "FORMULA"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "dateTimeRenderOption",
+                        "type": "select",
+                        "label": "Date and time render option",
+                        "validate": {
+                            "enum": [
+                                "SERIAL_NUMBER",
+                                "FORMATTED_STRING"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "type": "uinteger",
+                        "label": "Limit"
+                    },
+                    {
+                        "name": "spreadsheetId",
+                        "type": "select",
+                        "label": "Spreadsheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "includesHeaders",
+                        "type": "select",
+                        "label": "Table contains headers",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                true,
+                                false
+                            ]
+                        }
+                    },
+                    {
+                        "name": "tableFirstRow",
+                        "type": "select",
+                        "label": "Column range",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "A1:Z1",
+                                "A1:BZ1",
+                                "A1:CZ1",
+                                "A1:DZ1",
+                                "A1:MZ1",
+                                "A1:ZZ1",
+                                "A1:AZZ1",
+                                "A1:BZZ1",
+                                "A1:CZZ1",
+                                "A1:DZZ1",
+                                "A1:MZZ1",
+                                "A1:ZZZ1"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "filter",
+                        "type": "filter",
+                        "label": "Filter",
+                        "options": "rpc://google-sheets/2/rpcGetFilterKeys?includesHeaders=true"
+                    },
+                    {
+                        "name": "orderBy",
+                        "type": "select",
+                        "label": "Order by"
+                    },
+                    {
+                        "name": "sortOrder",
+                        "type": "select",
+                        "label": "Sort order",
+                        "validate": {
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "__ROW_NUMBER__",
+                        "type": "number",
+                        "label": "Row number"
+                    },
+                    {
+                        "name": "__SPREADSHEET_ID__",
+                        "type": "text",
+                        "label": "Spreadsheet ID"
+                    },
+                    {
+                        "name": "__SHEET__",
+                        "type": "text",
+                        "label": "Sheet"
+                    },
+                    {
+                        "name": "0",
+                        "type": "text",
+                        "label": "Date (A)"
+                    },
+                    {
+                        "name": "1",
+                        "type": "text",
+                        "label": "Campaign (B)"
+                    },
+                    {
+                        "name": "2",
+                        "type": "text",
+                        "label": "Spend (C)"
+                    },
+                    {
+                        "name": "3",
+                        "type": "text",
+                        "label": "Impressions (D)"
+                    },
+                    {
+                        "name": "4",
+                        "type": "text",
+                        "label": "Clicks (E)"
+                    },
+                    {
+                        "name": "5",
+                        "type": "text",
+                        "label": "Leads (F)"
+                    },
+                    {
+                        "name": "6",
+                        "type": "text",
+                        "label": "Revenue (G)"
+                    },
+                    {
+                        "name": "7",
+                        "type": "text",
+                        "label": "Platform (H)"
+                    },
+                    {
+                        "name": "8",
+                        "type": "text",
+                        "label": "(I)"
+                    },
+                    {
+                        "name": "9",
+                        "type": "text",
+                        "label": "(J)"
+                    },
+                    {
+                        "name": "10",
+                        "type": "text",
+                        "label": "(K)"
+                    },
+                    {
+                        "name": "11",
+                        "type": "text",
+                        "label": "(L)"
+                    },
+                    {
+                        "name": "12",
+                        "type": "text",
+                        "label": "(M)"
+                    },
+                    {
+                        "name": "13",
+                        "type": "text",
+                        "label": "(N)"
+                    },
+                    {
+                        "name": "14",
+                        "type": "text",
+                        "label": "(O)"
+                    },
+                    {
+                        "name": "15",
+                        "type": "text",
+                        "label": "(P)"
+                    },
+                    {
+                        "name": "16",
+                        "type": "text",
+                        "label": "(Q)"
+                    },
+                    {
+                        "name": "17",
+                        "type": "text",
+                        "label": "(R)"
+                    },
+                    {
+                        "name": "18",
+                        "type": "text",
+                        "label": "(S)"
+                    },
+                    {
+                        "name": "19",
+                        "type": "text",
+                        "label": "(T)"
+                    },
+                    {
+                        "name": "20",
+                        "type": "text",
+                        "label": "(U)"
+                    },
+                    {
+                        "name": "21",
+                        "type": "text",
+                        "label": "(V)"
+                    },
+                    {
+                        "name": "22",
+                        "type": "text",
+                        "label": "(W)"
+                    },
+                    {
+                        "name": "23",
+                        "type": "text",
+                        "label": "(X)"
+                    },
+                    {
+                        "name": "24",
+                        "type": "text",
+                        "label": "(Y)"
+                    },
+                    {
+                        "name": "25",
+                        "type": "text",
+                        "label": "(Z)"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 5,
+            "module": "builtin:BasicAggregator",
+            "version": 1,
+            "parameters": {
+                "feeder": 1
+            },
+            "mapper": {
+                "0": "{{1.`0`}}",
+                "1": "{{1.`1`}}",
+                "2": "{{1.`2`}}",
+                "3": "{{1.`3`}}",
+                "4": "{{1.`4`}}",
+                "5": "{{1.`5`}}",
+                "6": "{{1.`6`}}",
+                "7": "{{1.`7`}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "c90f0f668a56d4c1"
+                },
+                "restore": {
+                    "extra": {
+                        "feeder": {
+                            "label": "Google Sheets - Search Rows [1]"
+                        },
+                        "target": {
+                            "label": "Custom"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 25,
+            "module": "json:CreateJSON",
+            "version": 1,
+            "parameters": {
+                "type": 673566,
+                "space": ""
+            },
+            "filter": null,
+            "mapper": {
+                "Campaign": "{{5.array}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "84ebd64daffdba8f"
+                },
+                "restore": {
+                    "expect": {
+                        "Campaign": {
+                            "mode": "edit"
+                        }
+                    },
+                    "parameters": {
+                        "type": {
+                            "label": "Campaign_Data_Structure"
+                        },
+                        "space": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure",
+                        "required": true
+                    },
+                    {
+                        "name": "space",
+                        "type": "select",
+                        "label": "Indentation",
+                        "validate": {
+                            "enum": [
+                                "tab",
+                                "2",
+                                "4"
+                            ]
+                        }
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "Campaign",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "Date",
+                                    "type": "date",
+                                    "label": null
+                                },
+                                {
+                                    "name": "Campaign",
+                                    "type": "text",
+                                    "label": null
+                                },
+                                {
+                                    "name": "Spend",
+                                    "type": "number",
+                                    "label": null
+                                },
+                                {
+                                    "name": "Impressions",
+                                    "type": "number",
+                                    "label": null
+                                },
+                                {
+                                    "name": "Clicks",
+                                    "type": "number",
+                                    "label": null
+                                },
+                                {
+                                    "name": "Leads",
+                                    "type": "number",
+                                    "label": null
+                                },
+                                {
+                                    "name": "Revenue",
+                                    "type": "number",
+                                    "label": null
+                                },
+                                {
+                                    "name": "Platform",
+                                    "type": "number",
+                                    "label": null
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": null
+                    }
+                ]
+            }
+        },
+        {
+            "id": 7,
+            "module": "util:SetVariable2",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "name": "campaign_data",
+                "value": "{{25.json}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "929c109dadc44bd0"
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Variable name",
+                        "required": true
+                    },
+                    {
+                        "name": "value",
+                        "type": "any",
+                        "label": "Variable value"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "campaign_data",
+                        "type": "any",
+                        "label": "campaign_data"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 8,
+            "module": "http:MakeRequest",
+            "version": 4,
+            "parameters": {
+                "tlsType": "",
+                "apiKeyAccount": 12568661,
+                "authenticationType": "apiKeyConnection"
+            },
+            "mapper": {
+                "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+                "method": "post",
+                "timeout": "40",
+                "contentType": "json",
+                "inputMethod": "dataStructure",
+                "shareCookies": false,
+                "parseResponse": true,
+                "allowRedirects": true,
+                "stopOnHttpError": true,
+                "bodyDataStructure": 672271,
+                "dataStructureBodyContent": {
+                    "contents": [
+                        {
+                            "parts": [
+                                {
+                                    "text": "You are a digital marketing analyst.\r\n\r\nAnalyze the advertising campaign data below.\r\n\r\nReturn a concise report with these sections:\r\n\r\n1. Overall Performance: 2-3 sentences.\r\n2. Best Campaign: Name and reason.\r\n3. Weak Campaign: Name and reason.\r\n4. Key Insights: 3 bullet points.\r\n5. Recommendations: 3 practical actions.\r\n\r\nUse only the supplied data. Do not invent figures.\r\nKeep the entire report under 300 words.\n\r\nCampaign data:{{7.campaign_data}}"
+                                }
+                            ]
+                        }
+                    ],
+                    "generationConfig": {
+                        "temperature": "0.3",
+                        "maxOutputTokens": "5000"
+                    }
+                },
+                "requestCompressedContent": true
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "version": 1,
+                    "configuration": "8e34ef5efd293036",
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    }
+                },
+                "restore": {
+                    "expect": {
+                        "method": {
+                            "mode": "chose",
+                            "label": "POST"
+                        },
+                        "headers": {
+                            "mode": "chose"
+                        },
+                        "contentType": {
+                            "label": "application/jsonEnter data in the JSON format, as a string or using a data structure."
+                        },
+                        "inputMethod": {
+                            "label": "Data structureDefine the JSON body with a data structure to map or enter values for each key. JSON reserved characters are escaped automatically."
+                        },
+                        "shareCookies": {
+                            "mode": "chose"
+                        },
+                        "parseResponse": {
+                            "mode": "chose"
+                        },
+                        "allowRedirects": {
+                            "mode": "chose"
+                        },
+                        "paginationType": {
+                            "label": "Empty"
+                        },
+                        "queryParameters": {
+                            "mode": "chose"
+                        },
+                        "stopOnHttpError": {
+                            "mode": "chose"
+                        },
+                        "bodyDataStructure": {
+                            "label": "Gemini_Report_Request"
+                        },
+                        "dataStructureBodyContent": {
+                            "nested": {
+                                "contents": {
+                                    "mode": "chose",
+                                    "items": [
+                                        {
+                                            "parts": {
+                                                "mode": "chose",
+                                                "items": [
+                                                    null
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "requestCompressedContent": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "tlsType": {
+                            "label": "Empty"
+                        },
+                        "apiKeyAccount": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "http-v4-apikey"
+                            },
+                            "label": "Gemini API - P1 (https://generativelanguage.googleapis.com)"
+                        },
+                        "authenticationType": {
+                            "label": "API keyUse a saved API key connection with service URL restrictions."
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "authenticationType",
+                        "type": "select",
+                        "label": "Authentication type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "noAuth",
+                                "apiKeyConnection",
+                                "basicAuthConnection",
+                                "oAuth",
+                                "apiKey",
+                                "basicAuth"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "tlsType",
+                        "type": "select",
+                        "label": "Transport layer security (TLS)",
+                        "validate": {
+                            "enum": [
+                                "mTls",
+                                "tls"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "proxyKeychain",
+                        "type": "keychain:proxy",
+                        "label": "Proxy"
+                    },
+                    {
+                        "name": "apiKeyAccount",
+                        "type": "account:http-v4-apikey",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "get",
+                                "head",
+                                "post",
+                                "put",
+                                "patch",
+                                "delete",
+                                "options"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "name",
+                                    "type": "text",
+                                    "label": "Name",
+                                    "required": true,
+                                    "validate": {
+                                        "pattern": "^[-!#$%&'*+.^_`|~0-9A-Za-z]+$"
+                                    }
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "text",
+                                    "label": "Value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Header"
+                        },
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "queryParameters",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "name",
+                                    "type": "text",
+                                    "label": "Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "text",
+                                    "label": "Value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Parameter"
+                        },
+                        "type": "array",
+                        "label": "Query parameters"
+                    },
+                    {
+                        "name": "contentType",
+                        "type": "select",
+                        "label": "Body content type",
+                        "validate": {
+                            "enum": [
+                                "json",
+                                "multipart",
+                                "urlEncoded",
+                                "custom"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseResponse",
+                        "type": "boolean",
+                        "label": "Parse response",
+                        "required": true
+                    },
+                    {
+                        "name": "stopOnHttpError",
+                        "type": "boolean",
+                        "label": "Return error if HTTP request fails",
+                        "required": true
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "uinteger",
+                        "label": "Timeout",
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "allowRedirects",
+                        "type": "boolean",
+                        "label": "Allow redirects",
+                        "required": true
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    },
+                    {
+                        "name": "requestCompressedContent",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    },
+                    {
+                        "name": "inputMethod",
+                        "type": "select",
+                        "label": "Body input method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "dataStructure",
+                                "jsonString"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "bodyDataStructure",
+                        "type": "udt",
+                        "label": "Body structure",
+                        "required": true
+                    },
+                    {
+                        "name": "dataStructureBodyContent",
+                        "spec": [
+                            {
+                                "name": "contents",
+                                "spec": {
+                                    "name": "value",
+                                    "spec": [
+                                        {
+                                            "name": "parts",
+                                            "spec": {
+                                                "spec": [
+                                                    {
+                                                        "name": "text",
+                                                        "type": "text",
+                                                        "label": null,
+                                                        "required": true
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "required": true
+                                            },
+                                            "type": "array",
+                                            "label": null,
+                                            "required": true
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "required": true
+                                },
+                                "type": "array",
+                                "label": null,
+                                "required": true
+                            },
+                            {
+                                "name": "generationConfig",
+                                "spec": [
+                                    {
+                                        "name": "temperature",
+                                        "type": "number",
+                                        "label": null,
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "maxOutputTokens",
+                                        "type": "number",
+                                        "label": null,
+                                        "required": true
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": null,
+                                "required": true
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Body content"
+                    },
+                    {
+                        "name": "paginationType",
+                        "type": "select",
+                        "label": "Pagination type",
+                        "validate": {
+                            "enum": [
+                                "offsetBased",
+                                "pageBased",
+                                "urlBased",
+                                "tokenBased"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "data",
+                        "type": "any",
+                        "label": "Data"
+                    },
+                    {
+                        "name": "statusCode",
+                        "type": "number",
+                        "label": "Status Code"
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "content-length",
+                                "type": "text",
+                                "label": "Content-Length"
+                            },
+                            {
+                                "name": "content-encoding",
+                                "type": "text",
+                                "label": "Content-Encoding"
+                            },
+                            {
+                                "name": "content-type",
+                                "type": "text",
+                                "label": "Content-Type"
+                            },
+                            {
+                                "name": "server",
+                                "type": "text",
+                                "label": "Server"
+                            },
+                            {
+                                "name": "cache-control",
+                                "type": "text",
+                                "label": "Cache-Control"
+                            },
+                            {
+                                "name": "set-cookie",
+                                "spec": {
+                                    "type": "text"
+                                },
+                                "type": "array",
+                                "label": "Set-Cookie"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Headers"
+                    }
+                ]
+            },
+            "onerror": [
+                {
+                    "id": 28,
+                    "module": "builtin:Break",
+                    "version": 1,
+                    "parameters": {},
+                    "mapper": {
+                        "retry": true,
+                        "count": "3",
+                        "interval": "5"
+                    },
+                    "metadata": {
+                        "designer": {
+                            "x": 1500,
+                            "y": 150
+                        },
+                        "setupValidation": {
+                            "version": 1,
+                            "configuration": "16a9969966f1f851",
+                            "result": {
+                                "valid": true,
+                                "fields": []
+                            }
+                        },
+                        "restore": {
+                            "expect": {
+                                "retry": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "expect": [
+                            {
+                                "name": "retry",
+                                "type": "boolean",
+                                "label": "Retry automatically",
+                                "required": true
+                            },
+                            {
+                                "name": "count",
+                                "type": "uinteger",
+                                "label": "Number of retries",
+                                "validate": {
+                                    "min": 1,
+                                    "max": 10000
+                                },
+                                "required": true
+                            },
+                            {
+                                "name": "interval",
+                                "type": "uinteger",
+                                "label": "Minutes between retries",
+                                "validate": {
+                                    "min": 1,
+                                    "max": 44640
+                                },
+                                "required": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "module": "google-sheets:getSheetContent",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 12563809
+            },
+            "mapper": {
+                "from": "drive",
+                "range": "A2:S2",
+                "select": "list",
+                "sheetId": "Report_Export",
+                "spreadsheetId": "/1LOmDLIIDbsF4vZ1bJ0oNgAQxoibnd0kSn45W-_7BlDA",
+                "includesHeaders": false,
+                "valueRenderOption": "FORMATTED_VALUE",
+                "dateTimeRenderOption": "FORMATTED_STRING"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1500,
+                    "y": -150
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "e4a80e11678560b4"
+                },
+                "restore": {
+                    "expect": {
+                        "from": {
+                            "label": "My Drive"
+                        },
+                        "select": {
+                            "label": "Search by path"
+                        },
+                        "sheetId": {
+                            "label": "Report_Export"
+                        },
+                        "spreadsheetId": {
+                            "path": [
+                                "P1  Client Reporting Automation"
+                            ]
+                        },
+                        "includesHeaders": {
+                            "mode": "chose"
+                        },
+                        "valueRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted value"
+                        },
+                        "dateTimeRenderOption": {
+                            "mode": "chose",
+                            "label": "Formatted string"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "Abeeha's Google connection (abeehasajjad001@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Search Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "list",
+                                "fromAll",
+                                "map"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "range",
+                        "type": "text",
+                        "label": "Range",
+                        "required": true
+                    },
+                    {
+                        "name": "includesHeaders",
+                        "type": "boolean",
+                        "label": "Table contains headers",
+                        "required": true
+                    },
+                    {
+                        "name": "valueRenderOption",
+                        "type": "select",
+                        "label": "Value render option",
+                        "validate": {
+                            "enum": [
+                                "FORMATTED_VALUE",
+                                "UNFORMATTED_VALUE",
+                                "FORMULA"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "dateTimeRenderOption",
+                        "type": "select",
+                        "label": "Date and time render option",
+                        "validate": {
+                            "enum": [
+                                "SERIAL_NUMBER",
+                                "FORMATTED_STRING"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "spreadsheetId",
+                        "type": "file",
+                        "label": "Spreadsheet Name",
+                        "required": true
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet Name",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "__ROW_NUMBER__",
+                        "type": "number",
+                        "label": "Row number"
+                    },
+                    {
+                        "name": "__SPREADSHEET_ID__",
+                        "type": "text",
+                        "label": "Spreadsheet ID"
+                    },
+                    {
+                        "name": "__SHEET__",
+                        "type": "text",
+                        "label": "Sheet"
+                    },
+                    {
+                        "name": "0",
+                        "type": "text",
+                        "label": "A"
+                    },
+                    {
+                        "name": "1",
+                        "type": "text",
+                        "label": "B"
+                    },
+                    {
+                        "name": "2",
+                        "type": "text",
+                        "label": "C"
+                    },
+                    {
+                        "name": "3",
+                        "type": "text",
+                        "label": "D"
+                    },
+                    {
+                        "name": "4",
+                        "type": "text",
+                        "label": "E"
+                    },
+                    {
+                        "name": "5",
+                        "type": "text",
+                        "label": "F"
+                    },
+                    {
+                        "name": "6",
+                        "type": "text",
+                        "label": "G"
+                    },
+                    {
+                        "name": "7",
+                        "type": "text",
+                        "label": "H"
+                    },
+                    {
+                        "name": "8",
+                        "type": "text",
+                        "label": "I"
+                    },
+                    {
+                        "name": "9",
+                        "type": "text",
+                        "label": "J"
+                    },
+                    {
+                        "name": "10",
+                        "type": "text",
+                        "label": "K"
+                    },
+                    {
+                        "name": "11",
+                        "type": "text",
+                        "label": "L"
+                    },
+                    {
+                        "name": "12",
+                        "type": "text",
+                        "label": "M"
+                    },
+                    {
+                        "name": "13",
+                        "type": "text",
+                        "label": "N"
+                    },
+                    {
+                        "name": "14",
+                        "type": "text",
+                        "label": "O"
+                    },
+                    {
+                        "name": "15",
+                        "type": "text",
+                        "label": "P"
+                    },
+                    {
+                        "name": "16",
+                        "type": "text",
+                        "label": "Q"
+                    },
+                    {
+                        "name": "17",
+                        "type": "text",
+                        "label": "R"
+                    },
+                    {
+                        "name": "18",
+                        "type": "text",
+                        "label": "S"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 15,
+            "module": "google-docs:createADocumentFromTemplate",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 12563809
+            },
+            "mapper": {
+                "from": "drive",
+                "name": "Monthly Advertising Report - {{formatDate(now; \"\"\"MMMM YYYY\"\"\")}}",
+                "select": "dropdown",
+                "document": "/1yJad6chgvCrGW4h9Jnky039G9-P6yyTg/1hKtFNvRWavlVlc05wd_7yhgUWqRIDEaoOMAJZ6rNaCQ",
+                "folderId": "/",
+                "requests": {
+                    "ctr": "{{13.`17`}}",
+                    "roas": "{{13.`18`}}",
+                    "avg_cpc": "{{13.`15`}}",
+                    "avg_cpl": "{{13.`16`}}",
+                    "meta_leads": "{{13.`9`}}",
+                    "meta_spend": "{{13.`0`}}",
+                    "ai_analysis": "{{8.data.candidates[].content.parts[].text}}",
+                    "client_name": "Demo Client",
+                    "meta_clicks": "{{13.`6`}}",
+                    "report_date": "{{now}}",
+                    "total_leads": "{{13.`11`}}",
+                    "total_spend": "{{13.`2`}}",
+                    "google_leads": "{{13.`10`}}",
+                    "google_spend": "{{13.`1`}}",
+                    "meta_revenue": "{{13.`12`}}",
+                    "total_clicks": "{{13.`8`}}",
+                    "google_clicks": "{{13.`7`}}",
+                    "total_revenue": "{{13.`14`}}",
+                    "google_revenue": "{{13.`13`}}",
+                    "meta_impressions": "{{13.`3`}}",
+                    "reporting_period": "{{formatDate(now; \"\"\"MMMM YYYY\"\"\")}}",
+                    "executive_summary": "{{8.data.candidates[].content.parts[].text}}",
+                    "total_impressions": "{{13.`5`}}",
+                    "google_impressions": "{{13.`4`}}"
+                },
+                "destination": "drive"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1800,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "93d0a1ac0e858b10"
+                },
+                "restore": {
+                    "expect": {
+                        "from": {
+                            "label": "My Drive"
+                        },
+                        "select": {
+                            "label": "By Dropdown"
+                        },
+                        "document": {
+                            "path": [
+                                "Ai automation",
+                                "Monthly Advertising Report - "
+                            ]
+                        },
+                        "folderId": {
+                            "mode": "chose",
+                            "path": [
+                                "/"
+                            ]
+                        },
+                        "destination": {
+                            "label": "My Drive"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "Abeeha's Google connection (abeehasajjad001@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Create a Document from a Template",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "map",
+                                "dropdown"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Title",
+                        "required": true
+                    },
+                    {
+                        "name": "destination",
+                        "type": "select",
+                        "label": "New Drive Location",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "Choose a Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "document",
+                        "type": "file",
+                        "label": "Document ID",
+                        "required": true
+                    },
+                    {
+                        "name": "requests",
+                        "spec": [
+                            {
+                                "name": "client_name",
+                                "type": "any"
+                            },
+                            {
+                                "name": "reporting_period",
+                                "type": "any"
+                            },
+                            {
+                                "name": "report_date",
+                                "type": "any"
+                            },
+                            {
+                                "name": "executive_summary",
+                                "type": "any"
+                            },
+                            {
+                                "name": "meta_spend",
+                                "type": "any"
+                            },
+                            {
+                                "name": "google_spend",
+                                "type": "any"
+                            },
+                            {
+                                "name": "total_spend",
+                                "type": "any"
+                            },
+                            {
+                                "name": "meta_impressions",
+                                "type": "any"
+                            },
+                            {
+                                "name": "google_impressions",
+                                "type": "any"
+                            },
+                            {
+                                "name": "total_impressions",
+                                "type": "any"
+                            },
+                            {
+                                "name": "meta_clicks",
+                                "type": "any"
+                            },
+                            {
+                                "name": "google_clicks",
+                                "type": "any"
+                            },
+                            {
+                                "name": "total_clicks",
+                                "type": "any"
+                            },
+                            {
+                                "name": "meta_leads",
+                                "type": "any"
+                            },
+                            {
+                                "name": "google_leads",
+                                "type": "any"
+                            },
+                            {
+                                "name": "total_leads",
+                                "type": "any"
+                            },
+                            {
+                                "name": "meta_revenue",
+                                "type": "any"
+                            },
+                            {
+                                "name": "google_revenue",
+                                "type": "any"
+                            },
+                            {
+                                "name": "total_revenue",
+                                "type": "any"
+                            },
+                            {
+                                "name": "avg_cpc",
+                                "type": "any"
+                            },
+                            {
+                                "name": "avg_cpl",
+                                "type": "any"
+                            },
+                            {
+                                "name": "ctr",
+                                "type": "any"
+                            },
+                            {
+                                "name": "roas",
+                                "type": "any"
+                            },
+                            {
+                                "name": "ai_analysis",
+                                "type": "any"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Values"
+                    },
+                    {
+                        "name": "folderId",
+                        "type": "folder",
+                        "label": "New Document's Location",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 21,
+            "module": "google-docs:exportADocument",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 12563809
+            },
+            "mapper": {
+                "document": "{{15.id}}",
+                "mimeType": "application/pdf",
+                "destination": "drive"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2100,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "96e878cff20ca6e4"
+                },
+                "restore": {
+                    "expect": {
+                        "document": {
+                            "mode": "edit",
+                            "path": []
+                        },
+                        "mimeType": {
+                            "mode": "chose",
+                            "label": "PDF Document (.pdf)"
+                        },
+                        "destination": {
+                            "label": "My Drive"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google"
+                            },
+                            "label": "Abeeha's Google connection (abeehasajjad001@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "destination",
+                        "type": "select",
+                        "label": "Choose a Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "mimeType",
+                        "type": "select",
+                        "label": "Type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                "application/vnd.oasis.opendocument.text",
+                                "application/rtf",
+                                "application/pdf",
+                                "text/plain",
+                                "text/html",
+                                "application/epub+zip"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "document",
+                        "type": "file",
+                        "label": "Document ID",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 22,
+            "module": "google-email:sendAnEmail",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 12594241
+            },
+            "mapper": {
+                "to": [
+                    "abeeha.outreach@gmail.com"
+                ],
+                "content": "Hello,\r\n\r\nPlease find attached your Monthly Advertising Performance Report for November 2026.\r\n\r\nThe report includes:\r\n- Overall advertising performance\r\n- Meta Ads and Google Ads metrics\r\n- Key performance indicators\r\n- Campaign analysis and recommendations\r\n- Performance charts\r\n\r\nPlease review the report and let us know if you have any questions.\r\n\r\nBest regards,\r\nReporting Automation Team",
+                "subject": "Monthly Advertising Performance Report – November 2026",
+                "bodyType": "rawHtml",
+                "attachments": [
+                    {
+                        "data": "{{21.data}}",
+                        "filename": "{{21.filename}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2400,
+                    "y": 0
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "28e3012aa304ed51"
+                },
+                "restore": {
+                    "expect": {
+                        "cc": {
+                            "mode": "chose"
+                        },
+                        "to": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "bcc": {
+                            "mode": "chose"
+                        },
+                        "from": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "bodyType": {
+                            "label": "Raw HTML"
+                        },
+                        "attachments": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "emailHeaders": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-email"
+                            },
+                            "label": "Abeeha's Gmail connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-email",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "to",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address",
+                            "required": true,
+                            "validate": true
+                        },
+                        "type": "array",
+                        "label": "To",
+                        "required": true
+                    },
+                    {
+                        "name": "subject",
+                        "type": "text",
+                        "label": "Subject"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "rawHtml",
+                                "collection"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "attachments",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "filename",
+                                    "type": "filename",
+                                    "label": "File name",
+                                    "required": true,
+                                    "semantic": "file:name"
+                                },
+                                {
+                                    "name": "data",
+                                    "type": "buffer",
+                                    "label": "Data",
+                                    "required": true,
+                                    "semantic": "file:data"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Attachment"
+                        },
+                        "type": "array",
+                        "label": "Attachments"
+                    },
+                    {
+                        "name": "from",
+                        "type": "select",
+                        "label": "From"
+                    },
+                    {
+                        "name": "cc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address"
+                        },
+                        "type": "array",
+                        "label": "CC recipients"
+                    },
+                    {
+                        "name": "bcc",
+                        "spec": {
+                            "name": "value",
+                            "type": "email",
+                            "label": "Recipient email address"
+                        },
+                        "type": "array",
+                        "label": "BCC recipients"
+                    },
+                    {
+                        "name": "emailHeaders",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Key",
+                                    "required": true
+                                },
+                                {
+                                    "name": "value",
+                                    "type": "text",
+                                    "label": "Value"
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Email header"
+                        },
+                        "type": "array",
+                        "label": "Additional email headers"
+                    },
+                    {
+                        "name": "content",
+                        "type": "text",
+                        "label": "Content"
+                    }
+                ]
+            },
+            "onerror": [
+                {
+                    "id": 29,
+                    "module": "builtin:Break",
+                    "version": 1,
+                    "parameters": {},
+                    "mapper": {
+                        "retry": true,
+                        "count": "3",
+                        "interval": "5"
+                    },
+                    "metadata": {
+                        "designer": {
+                            "x": 2700,
+                            "y": 150
+                        },
+                        "setupValidation": {
+                            "version": 1,
+                            "configuration": "16a9969966f1f851",
+                            "result": {
+                                "valid": true,
+                                "fields": []
+                            }
+                        },
+                        "restore": {
+                            "expect": {
+                                "retry": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "expect": [
+                            {
+                                "name": "retry",
+                                "type": "boolean",
+                                "label": "Retry automatically",
+                                "required": true
+                            },
+                            {
+                                "name": "count",
+                                "type": "uinteger",
+                                "label": "Number of retries",
+                                "validate": {
+                                    "min": 1,
+                                    "max": 10000
+                                },
+                                "required": true
+                            },
+                            {
+                                "name": "interval",
+                                "type": "uinteger",
+                                "label": "Minutes between retries",
+                                "validate": {
+                                    "min": 1,
+                                    "max": 44640
+                                },
+                                "required": true
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": 26,
+            "module": "airtable:ActionCreateRecord",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 6299232
+            },
+            "mapper": {
+                "base": "appqFWxqQp73ZObxJ",
+                "table": "tblAwjFjJaOd0nXhG",
+                "record": {
+                    "fld2KdZ9vwUeR7XSY": "Demo Client",
+                    "fld9vUWaFmBHaDDh5": "{{13.`11`}}",
+                    "fldBLqHq7P6FFMUBX": "{{13.`2`}}",
+                    "fldCICyl8uYQJkFsE": "{{formatDate(now; \"\"\"MMMM YYYY\"\"\")}}",
+                    "fldG9FWNRZZHiRD5y": "{{13.`18`}}",
+                    "fldKZxp6Hkrl6gtXb": "{{13.`14`}}",
+                    "fldcTmLECvtjPRM4X": "Sent",
+                    "fldh65n2IunlYySBx": "{{15.webViewLink}}"
+                },
+                "typecast": false,
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2700,
+                    "y": -150
+                },
+                "setupValidation": {
+                    "result": {
+                        "valid": true,
+                        "fields": []
+                    },
+                    "version": 1,
+                    "configuration": "9087e81b2d042c4f"
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "label": "P1  Client Reporting Automation"
+                        },
+                        "table": {
+                            "label": "Table 1",
+                            "nested": [
+                                {
+                                    "name": "record",
+                                    "spec": [
+                                        {
+                                            "name": "fld2KdZ9vwUeR7XSY",
+                                            "type": "text",
+                                            "label": "Client Name"
+                                        },
+                                        {
+                                            "name": "fldCICyl8uYQJkFsE",
+                                            "type": "text",
+                                            "label": "Reporting Period"
+                                        },
+                                        {
+                                            "name": "fldBLqHq7P6FFMUBX",
+                                            "type": "text",
+                                            "label": "Total Spend"
+                                        },
+                                        {
+                                            "name": "fld9vUWaFmBHaDDh5",
+                                            "type": "number",
+                                            "label": "Total Leads"
+                                        },
+                                        {
+                                            "name": "fldKZxp6Hkrl6gtXb",
+                                            "type": "text",
+                                            "label": "Total Revenue"
+                                        },
+                                        {
+                                            "name": "fldG9FWNRZZHiRD5y",
+                                            "type": "number",
+                                            "label": "ROAS"
+                                        },
+                                        {
+                                            "name": "fldh65n2IunlYySBx",
+                                            "type": "text",
+                                            "label": "Report Link"
+                                        },
+                                        {
+                                            "mode": "edit",
+                                            "name": "fldcTmLECvtjPRM4X",
+                                            "type": "select",
+                                            "label": "Email Status",
+                                            "dynamic": true,
+                                            "options": [
+                                                {
+                                                    "label": "Pending",
+                                                    "value": "Pending"
+                                                },
+                                                {
+                                                    "label": "Sent",
+                                                    "value": "Sent"
+                                                },
+                                                {
+                                                    "label": "Failed",
+                                                    "value": "Failed"
+                                                }
+                                            ],
+                                            "validate": false
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Record"
+                                }
+                            ]
+                        },
+                        "record": {
+                            "nested": {
+                                "fldcTmLECvtjPRM4X": {
+                                    "mode": "chose",
+                                    "label": "Sent"
+                                }
+                            }
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable3"
+                            },
+                            "label": "My Airtable OAuth connection (User ID: usrl5Kn1jcTlZOSt0)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "record",
+                        "spec": [
+                            {
+                                "name": "fld2KdZ9vwUeR7XSY",
+                                "type": "text",
+                                "label": "Client Name"
+                            },
+                            {
+                                "name": "fldCICyl8uYQJkFsE",
+                                "type": "text",
+                                "label": "Reporting Period"
+                            },
+                            {
+                                "name": "fldBLqHq7P6FFMUBX",
+                                "type": "text",
+                                "label": "Total Spend"
+                            },
+                            {
+                                "name": "fld9vUWaFmBHaDDh5",
+                                "type": "number",
+                                "label": "Total Leads"
+                            },
+                            {
+                                "name": "fldKZxp6Hkrl6gtXb",
+                                "type": "text",
+                                "label": "Total Revenue"
+                            },
+                            {
+                                "name": "fldG9FWNRZZHiRD5y",
+                                "type": "number",
+                                "label": "ROAS"
+                            },
+                            {
+                                "name": "fldh65n2IunlYySBx",
+                                "type": "text",
+                                "label": "Report Link"
+                            },
+                            {
+                                "mode": "edit",
+                                "name": "fldcTmLECvtjPRM4X",
+                                "type": "select",
+                                "label": "Email Status"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created time"
+                    },
+                    {
+                        "name": "Client Name",
+                        "type": "text",
+                        "label": "Client Name"
+                    },
+                    {
+                        "name": "Reporting Period",
+                        "type": "text",
+                        "label": "Reporting Period"
+                    },
+                    {
+                        "name": "Total Spend",
+                        "type": "text",
+                        "label": "Total Spend"
+                    },
+                    {
+                        "name": "Total Leads",
+                        "type": "number",
+                        "label": "Total Leads"
+                    },
+                    {
+                        "name": "Total Revenue",
+                        "type": "text",
+                        "label": "Total Revenue"
+                    },
+                    {
+                        "name": "ROAS",
+                        "type": "number",
+                        "label": "ROAS"
+                    },
+                    {
+                        "name": "Report Link",
+                        "type": "text",
+                        "label": "Report Link"
+                    },
+                    {
+                        "name": "Email Status",
+                        "type": "text",
+                        "label": "Email Status"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": true,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com",
+        "notes": []
+    }
+}
