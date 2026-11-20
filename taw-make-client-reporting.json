@@ -75,7 +75,7 @@
                                 "scoped": "true",
                                 "connection": "google"
                             },
-                            "label": "Abeeha's Google connection (abeehasajjad001@gmail.com)"
+                            "label": ""
                         }
                     }
                 },
@@ -1411,7 +1411,7 @@
                                 "scoped": "true",
                                 "connection": "google"
                             },
-                            "label": "Abeeha's Google connection (abeehasajjad001@gmail.com)"
+                            "label": ""
                         }
                     }
                 },
@@ -1631,7 +1631,7 @@
                                 "scoped": "true",
                                 "connection": "google"
                             },
-                            "label": "Abeeha's Google connection (abeehasajjad001@gmail.com)"
+                            "label": ""
                         }
                     }
                 },
@@ -2072,7 +2072,7 @@
                                 "scoped": "true",
                                 "connection": "airtable3"
                             },
-                            "label": "My Airtable OAuth connection (User ID: usrl5Kn1jcTlZOSt0)"
+                            "label": ""
                         }
                     }
                 },
